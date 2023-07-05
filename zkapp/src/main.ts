@@ -4,6 +4,7 @@ import {
   Mina,
   PrivateKey,
   AccountUpdate,
+  Poseidon
 } from 'snarkyjs';
 
 console.log('SnarkyJS loaded');
@@ -47,4 +48,6 @@ await txn1.sign([senderKey]).send();
 
 const num1 = zkAppInstance.x.get();
 console.log('state after txn1:', num1.toString());
+console.log('secret after txn1:', Field(751).toString());
+console.log('compute secret + pw hash after txn1:', Poseidon.hash([salt, Field(751)]).toString());
 
